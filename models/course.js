@@ -6,7 +6,11 @@ module.exports = (sequelize, DataTypes) => {
       // A Course can have many enrollments:
       Course.hasMany(models.Enrollment, { foreignKey: 'course_id' });
       // For many-to-many relation with Students (if desired):
-      Course.belongsToMany(models.Student, { through: models.Enrollment, foreignKey: 'course_id' });
+      Course.belongsToMany(models.Student, {
+        through: models.Enrollment,
+        foreignKey: 'course_id',
+        otherKey: 'student_id'
+      });
     }
   }
   Course.init(
